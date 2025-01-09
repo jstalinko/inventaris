@@ -56,14 +56,21 @@ class HistoryBarangResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('karyawan.full_name')
                     ->label('Nama Admin')
-                    ->sortable(),
+                    ->sortable()
+                    ->badge()->color('success'),
                 Tables\Columns\TextColumn::make('barang.nama_barang')
                     ->label('Nama Barang')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('type')
+                    ->sortable()
                     ->badge(),
+                Tables\Columns\TextColumn::make('type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        '0' => 'danger',
+                        '1' => 'success'
+                    })->formatStateUsing(fn($record) => $record->type==1 ? 'MASUK' : 'KELUAR'),
                 Tables\Columns\TextColumn::make('total')
                     ->numeric()
+                    ->label('Jumlah')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
