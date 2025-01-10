@@ -22,9 +22,9 @@ class CreateHistoryBarang extends CreateRecord
         $barang = Barang::find($data['barang_id']);
 
         if($data['type'] == 1){
-        $barang->sisa_stock = ($barang->sisa_stock-$data['total']);
-        }elseif($data['type'] == 0){
         $barang->sisa_stock = ($barang->sisa_stock+$data['total']);
+        }elseif($data['type'] == 0){
+        $barang->sisa_stock = ($barang->sisa_stock-$data['total']);
         }
         $barang->save();
 
