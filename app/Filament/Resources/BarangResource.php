@@ -30,6 +30,7 @@ class BarangResource extends Resource
                     ->required()
                     ->relationship('supplier','name')->native(false),
                 Forms\Components\TextInput::make('code')
+                    ->label('SKU')
                     ->required(),
                 Forms\Components\TextInput::make('nama_barang')
                     ->required(),
@@ -62,6 +63,7 @@ class BarangResource extends Resource
                 Tables\Columns\TextColumn::make('supplier.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('code')
+                    ->label('SKU')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_barang')
                     ->searchable(),
