@@ -51,6 +51,7 @@ class BarangResource extends Resource
                 Forms\Components\TextInput::make('gudang')
                     ->required(),
                 Forms\Components\TextInput::make('nomor_rak')->label('Nomor / Nama Rak')->required(),
+                Forms\Components\TextInput::make('warna')->required(),
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
             ]);
@@ -67,6 +68,7 @@ class BarangResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_barang')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('warna')->searchable(),
                 Tables\Columns\TextColumn::make('satuan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_modal')
