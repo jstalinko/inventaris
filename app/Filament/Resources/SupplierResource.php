@@ -42,14 +42,15 @@ class SupplierResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('supplier_role')->label('Jenis Produk')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('name')->label('Nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')->label('No. HP')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')->label('Kota')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('supplier_role')->label('Jenis Produk')
-                    ->searchable(),
+               
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
