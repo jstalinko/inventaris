@@ -27,17 +27,13 @@ class SupplierResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')->label('Nama')
                     ->required(),
-                Forms\Components\Textarea::make('address')->label('Alamat')
-                    ->required()
-                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('phone')->label('No. HP')
                     ->tel()
                     ->required(),
                 Forms\Components\TextInput::make('city')->label('Kota')
                     ->required(),
-                Forms\Components\TextInput::make('email')->label('Email')
-                    ->email(),
-                Forms\Components\TextInput::make('supplier_role')->label('Alias')
+             
+                Forms\Components\TextInput::make('supplier_role')->label('Jenis Produk')
                     ->required(),
             ]);
     }
@@ -52,9 +48,7 @@ class SupplierResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')->label('Kota')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')->label('Email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('supplier_role')->label('Alias / Role')
+                Tables\Columns\TextColumn::make('supplier_role')->label('Jenis Produk')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

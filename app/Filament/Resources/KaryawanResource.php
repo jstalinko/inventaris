@@ -26,9 +26,10 @@ class KaryawanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
+                Forms\Components\Select::make('user_id')
                     ->required()
-                    ->numeric(),
+                    ->relationship('user','email')
+                    ->native(false),
                 Forms\Components\TextInput::make('full_name')
                     ->required(),
                 Forms\Components\Textarea::make('address')
@@ -39,8 +40,6 @@ class KaryawanResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->tel()
                     ->required(),
-                Forms\Components\Textarea::make('options')
-                    ->columnSpanFull(),
             ]);
     }
 

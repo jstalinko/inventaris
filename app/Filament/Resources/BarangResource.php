@@ -78,8 +78,10 @@ class BarangResource extends Resource
                     ->money('IDR',locale:'id')
                     ->label('Harga modal'),
                 Tables\Columns\TextColumn::make('stock')
+                    ->label('Stock Awal')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('sisa_stock')->numeric()->sortable(),
                 Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak ),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
