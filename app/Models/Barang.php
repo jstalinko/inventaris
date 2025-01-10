@@ -21,7 +21,8 @@ class Barang extends Model
         'note',
         'gudang',
         'nomor_rak',
-        'sisa_stock'
+        'sisa_stock',
+        'warna'
     ];
     public function supplier()
     {
