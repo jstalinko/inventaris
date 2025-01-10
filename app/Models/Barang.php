@@ -18,7 +18,9 @@ class Barang extends Model
         'price_modal',
         'price_sell',
         'code',
-        'note'
+        'note',
+        'gudang',
+        'nomor_rak'
     ];
     public function supplier()
     {

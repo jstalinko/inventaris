@@ -47,6 +47,9 @@ class BarangResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0),
+                Forms\Components\TextInput::make('gudang')
+                    ->required(),
+                Forms\Components\TextInput::make('nomor_rak')->label('Nomor / Nama Rak')->required(),
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
             ]);
@@ -75,6 +78,7 @@ class BarangResource extends Resource
                 Tables\Columns\TextColumn::make('stock')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak ),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
