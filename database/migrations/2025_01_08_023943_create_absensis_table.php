@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('type',['masuk','keluar','izin','sakit','alpha']);
             $table->dateTime('tanggal');
             $table->string('signature')->nullable();
+            $table->time('jam')->nullable();
+            $table->string('status')->default('tepat_waktu');
             $table->text('note')->nullable();
             $table->timestamps();
         });

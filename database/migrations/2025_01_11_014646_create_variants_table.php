@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('variants', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('city');
-            $table->string('supplier_role');
+            $table->foreignId('barang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('warna');
+            $table->integer('stock')->default(1);
+            $table->integer('sisa_stock')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('variants');
     }
 };

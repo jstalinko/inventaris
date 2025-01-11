@@ -14,18 +14,21 @@ class Barang extends Model
         'supplier_id',
         'nama_barang',
         'satuan',
-        'stock',
         'price_modal',
         'price_sell',
         'code',
         'note',
         'gudang',
         'nomor_rak',
-        'sisa_stock',
-        'warna'
+        'production_date',
+        
     ];
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
+    }
+    public function variants()
+    {
+        return $this->hasMany(Variant::class);
     }
 }

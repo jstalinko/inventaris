@@ -44,14 +44,16 @@ class BarangResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('Rp'),
-                Forms\Components\TextInput::make('stock')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
+              
                 Forms\Components\TextInput::make('gudang')
                     ->required(),
-                Forms\Components\TextInput::make('nomor_rak')->label('Nomor / Nama Rak')->required(),
-                Forms\Components\TextInput::make('warna')->required(),
+                    Forms\Components\TextInput::make('nomor_rak')->label('Nomor / Nama Rak')->required(),
+                Forms\Components\Repeater::make('variasi')->schema([
+                    Forms\Components\TextInput::make('warna'),
+                    Forms\Components\TextInput::make('stock'),
+                ])->columns(2)->columnSpanFull(),
+                
+               
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
             ]);
@@ -79,12 +81,17 @@ class BarangResource extends Resource
                     ->searchable()
                     ->money('IDR',locale:'id')
                     ->label('Harga modal'),
-                Tables\Columns\TextColumn::make('stock')
-                    ->label('Stock Awal')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('sisa_stock')->numeric()->sortable(),
+                Tables\Columns\TextColumn::make('variants')->formatStateUsing(function($record){
+                    foreach($record->variants as $v)
+                    {
+                        echo $v['warna']." - ".$v['stock']."/".$v['sisa_stock']."<br>";
+                    }
+                })->label('Warna - Stock Awal / Sisa Stock'),
                 Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak ),
+
+
+                Tables\Columns\TextColumn::make('Total Modal'),
+                Tables\Columns\TextColumn::make('Total Omzet'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

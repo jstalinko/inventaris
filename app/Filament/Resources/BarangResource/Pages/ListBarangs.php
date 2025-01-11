@@ -10,7 +10,7 @@ class ListBarangs extends ListRecords
 {
     protected static string $resource = BarangResource::class;
 
-    protected ?string $heading = 'Daftar Transaksi';
+    protected ?string $heading = 'Daftar Barang';
 
     protected function getHeaderActions(): array
     {

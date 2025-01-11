@@ -13,7 +13,7 @@ class HistoryBarang extends Model
         'barang_id',
         'total',
         'type',
-        'note'
+        'note',
     ];
     public function barang()
     {

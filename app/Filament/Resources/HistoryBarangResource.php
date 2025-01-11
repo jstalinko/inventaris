@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\HistoryBarangResource\Pages;
 use App\Filament\Resources\HistoryBarangResource\RelationManagers;
 use App\Models\HistoryBarang;
+use App\Models\Variant;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
 
 class HistoryBarangResource extends Resource
 {
@@ -23,19 +25,31 @@ class HistoryBarangResource extends Resource
 
     protected static ?string $navigationLabel = 'Daftar Transaksi';
 
+    public static $variants;
+
     
 
     public static function form(Form $form): Form
     {
+        
         return $form
             ->schema([
                 Forms\Components\Select::make('barang_id')
                     ->required()
-                    ->relationship('barang','nama_barang')
-                    ->native(false)
+                    ->relationship('barang','code')
                     ->searchable()
                     ->preload()
-                    ->columnSpanFull(),
+                    ->reactive()
+                    ->label('SKU - BARANG')
+                    ->getOptionLabelFromRecordUsing(fn(Model $record)=> "{$record->code} - {$record->nama_barang}" )
+                    ->afterStateUpdated(function($set,$state)
+                    {
+                        $variant = Variant::where('barang_id',$state)->get();
+                        self::$variants = $variant->pluck('warna' , 'id');
+                        
+                    })
+                    ,
+                Forms\Components\Select::make('variants')->options(fn() => self::$variants)->hidden(fn($state) => empty(self::$variants) && $state === null)->label('Pilih Variant Warna'),
                 Forms\Components\Select::make('type')
                     ->label('Tipe Transaksi')
                     ->required()

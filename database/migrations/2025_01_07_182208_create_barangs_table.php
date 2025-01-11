@@ -19,9 +19,12 @@ return new class extends Migration
             $table->string('satuan');
             $table->string('price_modal');
             $table->string('price_sell');
-            $table->integer('stock')->default(0);
+            $table->date('production_date')->default(now());
+            $table->string('gudang')->nullable();
+            $table->string('nomor_rak')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
+            
         });
     }
 
