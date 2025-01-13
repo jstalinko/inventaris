@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\AccessJamKerjaOnly;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -27,8 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('dashboard')
-            ->registration()
             ->login()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,10 +52,11 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                AbsenMiddleware::class
             ])
             ->authMiddleware([
                 Authenticate::class,
+                AccessJamKerjaOnly::class,
+                AbsenMiddleware::class,
             ])->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ])->spa();

@@ -26,7 +26,7 @@ class AbsenMiddleware
             {
                 dd("User anda terdaftar, namun tidak terdaftar dalam staff/karyawan");
             }
-            $absen = Absensi::where('user_id' , auth()->user()->id)->where('tanggal',$datenow)->where('karyawan_id' , $karyawan->id)->first();
+            $absen = Absensi::where('user_id' , auth()->user()->id)->where('tanggal',$datenow)->where('karyawan_id' , $karyawan->id)->where('type','masuk')->first();
             if(!$absen)
             {
                 return redirect('/absen');

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [JustOrangeController::class , 'index']);
 Route::get('/absen',[JustOrangeController::class , 'absen'])->name('absen');
+Route::get('/absen-keluar', [JustOrangeController::class , 'absenKeluar'])->name('absenKeluar');
 Route::get('/data' , function(){
     dd(auth()->user());
 });

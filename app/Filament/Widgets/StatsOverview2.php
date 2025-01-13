@@ -15,9 +15,9 @@ class StatsOverview2 extends BaseWidget
         $omzet =0;
         //$omzet = Barang::getTotalOmzet();
         return [
-            Stat::make('Total Modal' , $modal),
-            Stat::make('Total Omzet',$omzet),
-            Stat::make('Total Laba',$laba),
+            // Stat::make('Total Modal' , $modal),
+            // Stat::make('Total Omzet',$omzet),
+            // Stat::make('Total Laba',$laba),
         ];
     }
 }

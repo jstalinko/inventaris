@@ -49,9 +49,21 @@ class AbsensiResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('karyawan.full_name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                ->badge()
+                ->sortable()
+                ->color(fn($state) => match($state)
+            {
+                'terlambat' => 'danger',
+                'tepat_waktu' => 'success'
+            }),
                 Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color(fn($state) => match($state){
+                        'keluar' => 'danger',
+                        'masuk' => 'success'
+                    }),
                 Tables\Columns\TextColumn::make('tanggal')
                     ->date()
                     ->sortable(),

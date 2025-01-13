@@ -23,7 +23,8 @@ class BarangTable extends BaseWidget
             )
             ->columns([
                 Tables\Columns\TextColumn::make('code')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('SKU'),
                 Tables\Columns\TextColumn::make('nama_barang')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('satuan')
@@ -32,9 +33,13 @@ class BarangTable extends BaseWidget
                 Tables\Columns\TextColumn::make('price_sell')->label('Harga')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('stock')
-                    ->numeric()
-                    ->sortable(),
+                    Tables\Columns\TextColumn::make('variants')->formatStateUsing(function($record){
+                        foreach($record->variants as $v)
+                        {
+                            echo $v['warna']." - ".$v['stock']."/".$v['sisa_stock']."<br>";
+                        }
+                    })->label('Warna - Stock Awal / Sisa Stock'),
+               
             ]);
     }
 }
