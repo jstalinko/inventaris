@@ -109,8 +109,7 @@ class BarangResource extends Resource
                         echo $v['warna']." - ".$v['stock']."/".$v['sisa_stock']."<br>";
                     }
                 })->label('Warna - Stock Awal / Sisa Stock'),
-                Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak ),
-
+                Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak )->label('Gudang | Rak'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
