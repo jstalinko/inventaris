@@ -47,7 +47,7 @@ class AbsenKeluarWidget extends Widget
 
         } else {
             return [
-                'alert' => 'peler',
+                'alert' => '',
                 'button' => false
             ];
         }
