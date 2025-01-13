@@ -75,7 +75,7 @@ class BarangResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_modal')
                     ->searchable()
-                    ->label('Harga jual')
+                    ->label('Harga Modal')
                     ->formatStateUsing(function($record){
                         $satuan = "@Rp ".number_format($record->price_modal , 0,",",".");
                         $stock = 0;
@@ -89,7 +89,7 @@ class BarangResource extends Resource
                     }),
                 Tables\Columns\TextColumn::make('price_sell')
                     ->searchable()
-                    ->label('Harga modal')
+                    ->label('Harga Jual')
                     ->formatStateUsing(function($record){
                         $satuan = "@Rp ".number_format($record->price_sell , 0,",",".");
                         $stock = 0;
