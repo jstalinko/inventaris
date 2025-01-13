@@ -31,4 +31,11 @@ class Barang extends Model
     {
         return $this->hasMany(Variant::class);
     }
+    public function getOmzetAttribute()
+    {
+        return $this->variants->sum(function($variant) {
+            return ($variant->stock - $variant->sisa_stock) * $this->price_sell;
+        });
+    }
+
 }

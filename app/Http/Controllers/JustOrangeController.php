@@ -60,8 +60,9 @@ class JustOrangeController extends Controller
         if(!$absensi)
         {
     
+            $setting = json_decode(file_get_contents(storage_path('app/settings.json')) ,true);
 
-            $cutoffTime = '08:00:00';
+            $cutoffTime = $setting['jamkerja']['jam_masuk'];
             $currentTime = date('H:i:s');
 
             $abs = new Absensi();

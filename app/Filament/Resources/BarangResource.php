@@ -75,12 +75,34 @@ class BarangResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_modal')
                     ->searchable()
-                    ->money('IDR',locale:'id')
-                    ->label('Harga jual'),
+                    ->label('Harga jual')
+                    ->formatStateUsing(function($record){
+                        $satuan = "@Rp ".number_format($record->price_modal , 0,",",".");
+                        $stock = 0;
+                        $sisa_stock = 0;
+                        foreach($record->variants as $v){
+                            $stock+=$v['stock'];
+                            $sisa_stock+=$v['sisa_stock'];
+                        }
+                        $total = ($record->price_modal * $stock);
+                        echo $satuan." <br>Total: Rp ".number_format($total , 0,",",".");
+                    }),
                 Tables\Columns\TextColumn::make('price_sell')
                     ->searchable()
-                    ->money('IDR',locale:'id')
-                    ->label('Harga modal'),
+                    ->label('Harga modal')
+                    ->formatStateUsing(function($record){
+                        $satuan = "@Rp ".number_format($record->price_sell , 0,",",".");
+                        $stock = 0;
+                        $sisa_stock = 0;
+                        foreach($record->variants as $v){
+                            $stock+=$v['stock'];
+                            $sisa_stock+=$v['sisa_stock'];
+                        }
+                        $total = ($record->price_sell * $stock);
+                        $terjual = ($record->price_sell * ($stock-$sisa_stock));
+                        $terjual = "<br>Terjual: Rp ".number_format($terjual,0,",",".");
+                        echo $satuan." <br>Total: Rp ".number_format($total , 0,",",".").$terjual;
+                    }),
                 Tables\Columns\TextColumn::make('variants')->formatStateUsing(function($record){
                     foreach($record->variants as $v)
                     {
@@ -89,9 +111,6 @@ class BarangResource extends Resource
                 })->label('Warna - Stock Awal / Sisa Stock'),
                 Tables\Columns\TextColumn::make('gudang')->formatStateUsing(fn($record) => 'Gudang: '. $record->gudang.' | Rak : '.$record->nomor_rak ),
 
-
-                Tables\Columns\TextColumn::make('Total Modal'),
-                Tables\Columns\TextColumn::make('Total Omzet'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

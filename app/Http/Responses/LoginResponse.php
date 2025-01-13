@@ -15,7 +15,12 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request)
     {
         // return whatever you want as url
+
+        if(auth()->check() && !auth()->user()->hasRole('super_admin')){
         $url = route('absen');
+        }else{
+        $url = '/dashboard';
+        }
 
         return redirect()->intended($url);
     }

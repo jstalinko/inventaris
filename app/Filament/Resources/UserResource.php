@@ -32,8 +32,8 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required(),
-                    Forms\Components\Select::make('roles')->relationship('roles', 'name')->multiple()->preload()->searchable(),
-
+                Forms\Components\Select::make('roles')->relationship('roles', 'name')->multiple()->preload()->searchable(),
+                Forms\Components\Toggle::make('create_karyawan')->helperText('Otomatis buat data karyawan dari data user'),
                 
             ]);
     }

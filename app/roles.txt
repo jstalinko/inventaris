@@ -1,0 +1,14 @@
+
+
+ROLES
+1. Super Admin ( Owner )
+- Tidak perlu absen
+- Free access ke semua
+- Bisa mengakses semua menu
+
+2. Admin ( Staff Admin )
+- 
+
+
+3. Staff ( Karyawan )
+

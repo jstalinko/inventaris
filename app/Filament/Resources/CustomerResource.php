@@ -22,7 +22,10 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationGroup = 'Master Data';
 
-
+    public static function canAccess(): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
