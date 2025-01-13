@@ -70,7 +70,7 @@ class BarangResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_barang')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('warna')->searchable(),
+    
                 Tables\Columns\TextColumn::make('satuan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_modal')
