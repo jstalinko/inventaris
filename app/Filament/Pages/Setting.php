@@ -20,7 +20,11 @@ class Setting extends Page implements HasForms
     protected static ?string $navigationGroup = 'Settings';
 
     public $data = [];
-    
+    public static function canAccess(): bool
+{
+    return auth()->user()->hasRole('super_admin');
+}
+
     public function mount(): void
     {
         $this->data = $this->loadSettings();
